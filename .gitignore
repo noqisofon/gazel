@@ -1,0 +1,14 @@
+# -*- mode: gitignore; -*-
+
+# Emacs temporaty files
+*~
+.*~
+\#*#
+
+# direcoty
+/doc/
+/libs/
+/.crystal/
+/.shards/
+
+
