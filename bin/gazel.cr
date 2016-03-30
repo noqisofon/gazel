@@ -1,6 +1,5 @@
-#!/usr/bin/crystal run
 # -*- mode: crystal; -*-
-require 'gazel'
+require "../src/gazel"
 
 progn = Gazel::Application.new
 
