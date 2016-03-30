@@ -6,9 +6,7 @@
 \#*#
 
 # direcoty
-/doc/
-/libs/
-/.crystal/
-/.shards/
-
-
+doc/
+libs/
+.crystal/
+.shards/

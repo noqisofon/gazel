@@ -1,0 +1,7 @@
+#!/usr/bin/crystal run
+# -*- mode: crystal; -*-
+require 'gazel'
+
+progn = Gazel::Application.new
+
+progn.run
