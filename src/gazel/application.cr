@@ -5,6 +5,14 @@ module Gazel
   class Application
 
     DEFAULT_NAME = "gazel"
+
+    AVAILABLE_GAZEL_FILES = [
+      "gazelfile",
+      "Gazelfile",
+      "gazelfile.yml",
+      "Gazelfile.yml",
+      "build.yml"
+    ]
     
     def initialize()
       @name = DEFAULT_NAME
@@ -17,21 +25,22 @@ module Gazel
     end
 
     def init(app_name)
-      args = handle_options
+      args = handle_options ARGV.clone
     end
 
-    def handle_options()
+    private def handle_options(args)
       options[:trace_output] = $stderr
 
       parser = OptionParser.new do |opts|
         opts.banner = "Usage: #{@name} [-f <gazel file>] [<options>] <targets>..."
         opts.separator ""
         opts.separator "Options:"
-        opts.on "-B", "--always-build", "" do |v|
+
+        opts.on "-B", "--always-build", "Build does all targets unconditinally." do |v|
           options[:always_build] = true
         end
 
-        opts.on "-C dir", "--directory=dir", "" do |dir|
+        opts.on "-C dir", "--directory=dir", "Move to directory" do |dir|
           options[:current_directory] = dir
         end
 
@@ -40,14 +49,14 @@ module Gazel
           exit
         end
       end
-      parser.parse ARGV
+      parser.parse args
     end
 
-    def load_gazel_file()
+    private def load_gazel_file()
       raw_load_gazel_file
     end
 
-    def raw_load_gazel_file()
+    private def raw_load_gazel_file()
       nil
     end
 

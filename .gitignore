@@ -10,3 +10,6 @@ doc/
 libs/
 .crystal/
 .shards/
+
+# Build Result file
+gazel
