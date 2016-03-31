@@ -10,6 +10,6 @@ module Gazel
   alias Float            = Float32 | Float64
 
   # collection without any type
-  alias Any              = Integer | Float | Bool | Symbol | Range | IO | Nil
+  alias Any              = Integer | Float | Bool | Symbol | String | IO | Nil
   
 end
