@@ -1,4 +1,5 @@
 require "option_parser"
+require "./aliases"
 
 module Gazel
 
@@ -65,7 +66,7 @@ module Gazel
     end
 
     def options()
-      @options ||= {} of Symbol => (Int32 | String | Bool | IO | Nil)
+      @options ||= {} of Symbol => Any
     end
   end
 

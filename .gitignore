@@ -12,4 +12,4 @@ libs/
 .shards/
 
 # Build Result file
-gazel
+/gazel
