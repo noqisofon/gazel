@@ -1,22 +1,17 @@
 require "option_parser"
+
 require "./aliases"
+require "./gazel_finder"
 
 module Gazel
 
   class Application
 
     DEFAULT_NAME = "gazel"
-
-    AVAILABLE_GAZEL_FILES = [
-      "gazelfile",
-      "Gazelfile",
-      "gazelfile.yml",
-      "Gazelfile.yml",
-      "build.yml"
-    ]
     
     def initialize()
       @name = DEFAULT_NAME
+      @top_level_tasks = [] of String
     end
 
     def run()
@@ -27,6 +22,8 @@ module Gazel
 
     def init(app_name)
       args = handle_options ARGV.clone
+
+      collect_command_line_tasks args
     end
 
     private def handle_options(args)
@@ -53,12 +50,28 @@ module Gazel
       parser.parse args
     end
 
+    private def collect_command_line_tasks(args)
+      if args.is_a? Array(String)
+        args.each do |arg|
+          @top_level_tasks << arg unless arg =~ /^-/
+        end
+      end
+
+      @top_level_tasks << default_task_name if @top_level_tasks.empty?
+    end
+
+    private def default_task_name()
+      "default"
+    end
+
     private def load_gazel_file()
       raw_load_gazel_file
     end
 
     private def raw_load_gazel_file()
-      nil
+      finder = GazelFileFinder.new
+      
+      gazel_file, location = finder.find options
     end
 
     def top_level(setting)
