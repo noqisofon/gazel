@@ -34,7 +34,7 @@ module Gazel
         opts.separator ""
         opts.separator "Options:"
 
-        opts.on "-B", "--always-build", "Build does all targets unconditinally." do |v|
+        opts.on "-B"    , "--always-build" , "Build does all targets unconditinally." do |v|
           options[:always_build] = true
         end
 
@@ -42,7 +42,7 @@ module Gazel
           options[:current_directory] = dir
         end
 
-        opts.on "-h", "--help", "Display this help message" do
+        opts.on "-h"    , "--help"         , "Display this help message" do
           puts opts
           exit
         end
